@@ -15,10 +15,12 @@ public class ArrayOfNumbers {
         return userCount;
     }
 
+    //заполнение массива рандомными числами
     public static int[] randomNumber (int userCount) throws IOException {
         Random randomNumbers = new Random();
 
         System.out.println("Вы выбрали вариант 1: Рандомно");
+        System.out.println("Ваш массив будет состоять из " + userCount + " элементов");
 
         System.out.println("Какому диапозону должны соответсвовать числа(включительно)?");
 
@@ -37,7 +39,7 @@ public class ArrayOfNumbers {
         int [] randomArray = new int[userCount];
 
         for (int i = 0; i < userCount; i++) {
-            randomArray[i] = minRange + randomNumbers.nextInt(maxRange+1);
+            randomArray[i] = minRange + randomNumbers.nextInt(maxRange - minRange + 1);
         }
 
         System.out.println("Генерация завершена. Спасибо за ожидание.");
@@ -45,8 +47,10 @@ public class ArrayOfNumbers {
         return randomArray;
     }
 
+    //заполнение массива вручную пользователем
     public static int[] manualNumbers (int userCount) throws IOException {
         System.out.println("Вы выбрали вариант 2: Вручную");
+        System.out.println("Ваш массив будет состоять из " + userCount + " элементов");
 
         System.out.println("Введите желаемые числа:");
 
@@ -60,5 +64,19 @@ public class ArrayOfNumbers {
             userArray[i] = userNum;
         }
         return  userArray;
+    }
+
+    public static int [] bubbleSort (int [] userArr) {
+        int maxNumber;
+        for (int i = userArr.length - 1; i >= 0; i --){
+            for (int y = 0; y < i; y++) {
+                if (userArr[y] > userArr[y+1]){
+                    maxNumber = userArr[y];
+                    userArr[y] = userArr[y+1];
+                    userArr[y+1] = maxNumber;
+                }
+            }
+        }
+        return userArr;
     }
 }
